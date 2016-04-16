@@ -2100,7 +2100,7 @@
 			facesSearch = octreeObject.faces;
 			facesAll = object.geometry.faces;
 			
-			if ( facesSearch.length > 0 ) {
+			if ( facesSearch  && facesSearch.length > 0 ) {
 				
 				object.geometry.faces = facesSearch;
 				
@@ -2112,7 +2112,7 @@
 			
 			// revert object geometry's faces
 			
-			if ( facesSearch.length > 0 ) {
+			if ( facesSearch  && facesSearch.length > 0 ) {
 				
 				object.geometry.faces = facesAll;
 				
@@ -2123,6 +2123,9 @@
 			intersects = this.intersectObject( object, recursive );
 			
 		}
+
+		// sort results.
+		intersects.sort(THREE.Raycaster.ascSort);
 		
 		return intersects;
 		
@@ -2138,6 +2141,9 @@
 			intersects = intersects.concat( this.intersectOctreeObject( objects[ i ], recursive ) );
 		
 		}
+
+		// sort results.
+		intersects.sort(THREE.Raycaster.ascSort);
 		
 		return intersects;
 		
